@@ -1,6 +1,6 @@
 class Graph
 	def initialize(n)
-		@nmap = {}
+		@nmap = Hash.new(-1)
 		@dimension = n
 		@adj_matrix = []
 		count = 0
@@ -8,7 +8,7 @@ class Graph
 			temp = []
 			for j in 0..n - 1
 				temp.push(0)
-				key = "({#{i}, #{j})"
+				key = "(#{j}, #{i})"
 				@nmap[key] = count
 				count += 1
 			end
@@ -24,14 +24,12 @@ class Graph
 			end
 			puts "\n"
 		end
+		puts @nmap
 	end
 
+	# Given an x, y cordinate return the node id
 	def node_id(x, y)
-		id = @nmap["({#{x}, #{y})"]
-		if not id
-			id = -1
-		end
-		return id 
+		return @nmap["(#{x}, #{y})"]
 	end
 
 	# Checks if thers an edge between v1 & v2

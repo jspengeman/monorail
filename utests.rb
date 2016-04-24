@@ -1,5 +1,7 @@
 load "graph.rb"
+load "problem.rb"
 require "test/unit"
+
 
 class GraphTest < Test::Unit::TestCase
 	def test
@@ -47,6 +49,7 @@ class GraphTest < Test::Unit::TestCase
 	end
 end
 
+
 class GraphIDTest < Test::Unit::TestCase
 	def test
 		@graph = Graph.new(3)
@@ -55,10 +58,35 @@ class GraphIDTest < Test::Unit::TestCase
 
 	def check_nmap
 		assert_equal(0, @graph.node_id(0, 0))
-		assert_equal(2, @graph.node_id(0, 2))
+		assert_equal(2, @graph.node_id(2, 0))
 		assert_equal(-1, @graph.node_id(4, 4))
 		assert_equal(8, @graph.node_id(2, 2))
 		assert_equal(4, @graph.node_id(1, 1))
+	end
+end
+
+
+class ProblemTest < Test::Unit::TestCase
+	def test
+		@problem = Problem.new(3, 0, 8, [[0, 1], [1, 2]])
+		check_neighbors()
+	end
+
+	def check_neighbors
+		assert_equal([5, 7], @problem.neighbors(2, 2))
+		assert_equal([1, 7, 3, 5], @problem.neighbors(1, 1))
+		assert_equal([3, 1], @problem.neighbors(0, 0))
+		assert_equal([5, 1], @problem.neighbors(2, 0))
+		assert_equal([3, 7], @problem.neighbors(0, 2))
+	end
+
+	def check_start
+	end
+
+	def check_goal
+	end
+
+	def check_matrix
 	end
 end
 
