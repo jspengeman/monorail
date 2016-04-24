@@ -46,3 +46,20 @@ class GraphTest < Test::Unit::TestCase
 		assert_equal(0, @graph.weight(5, 4))
 	end
 end
+
+class GraphIDTest < Test::Unit::TestCase
+	def test
+		@graph = Graph.new(3)
+		check_nmap()
+	end
+
+	def check_nmap
+		assert_equal(0, @graph.node_id(0, 0))
+		assert_equal(2, @graph.node_id(0, 2))
+		assert_equal(-1, @graph.node_id(4, 4))
+		assert_equal(8, @graph.node_id(2, 2))
+		assert_equal(4, @graph.node_id(1, 1))
+	end
+end
+
+

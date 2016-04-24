@@ -1,11 +1,16 @@
 class Graph
 	def initialize(n)
+		@nmap = {}
 		@dimension = n
 		@adj_matrix = []
-		for i in 1..n
+		count = 0
+		for i in 0..n - 1
 			temp = []
-			for j in 1..n
+			for j in 0..n - 1
 				temp.push(0)
+				key = "({#{i}, #{j})"
+				@nmap[key] = count
+				count += 1
 			end
 			@adj_matrix.push(temp)
 		end
@@ -21,12 +26,19 @@ class Graph
 		end
 	end
 
+	def node_id(x, y)
+		id = @nmap["({#{x}, #{y})"]
+		if not id
+			id = -1
+		end
+		return id 
+	end
+
 	# Checks if thers an edge between v1 & v2
 	def adjacent(v1, v2)
 		if v1 >= @dimension or v2 >= @dimension
 			return false
 		end
-
 		is_adj = @adj_matrix[v1][v2] != 0 \
 		and @adj_matrix[v2][v1] != 0
 		return is_adj

@@ -18,17 +18,12 @@ class Problem
 	end
 
 	# Checks for adjacent stations
-	def adjacent
+	def adjacent(v)
+		delta = 1
 	end
 
 	# Given a solution name run that function
 	def solve(fn)
-	end
-
-	def a_star
-	end
-
-	def kruskal
 	end
 end
 
