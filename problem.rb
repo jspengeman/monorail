@@ -26,7 +26,7 @@ class Problem
 		@graph.display
 	end
 
-	# Checks for neighboring train stations - O(1) || O(n)?
+	# Checks for neighboring train stations - O(n)
 	def stations(x, y)
 		delta = 1
 		up = @graph.node_id(x, y - delta)

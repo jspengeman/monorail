@@ -1,4 +1,5 @@
 class Graph
+	# Object constructor with hash and matrix - O(n^2)
 	def initialize(n)
 		@nmap = Hash.new(-1)
 		@dimension = n
@@ -16,7 +17,7 @@ class Graph
 		end
 	end
 
-	# Display the adj matrix rows and cols
+	# Display the adj matrix rows and cols - O(n^2)
 	def display
 		@adj_matrix.each do |sublist|
 			sublist.each do |item|
@@ -32,7 +33,7 @@ class Graph
 		return @nmap["(#{x}, #{y})"]
 	end
 
-	# Checks if thers an edge between v1 & v2 - O(1)
+	# Checks if theres an edge between v1 & v2 - O(1)
 	def adjacent(v1, v2)
 		if v1 >= @dimension or v2 >= @dimension
 			return false
