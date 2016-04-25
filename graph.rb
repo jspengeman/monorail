@@ -27,12 +27,12 @@ class Graph
 		puts @nmap
 	end
 
-	# Given an x, y cordinate return the node id
+	# Given an x, y cordinate return the node id - O(1)
 	def node_id(x, y)
 		return @nmap["(#{x}, #{y})"]
 	end
 
-	# Checks if thers an edge between v1 & v2
+	# Checks if thers an edge between v1 & v2 - O(1)
 	def adjacent(v1, v2)
 		if v1 >= @dimension or v2 >= @dimension
 			return false
@@ -42,7 +42,7 @@ class Graph
 		return is_adj
 	end
 
-	# Returns the weight of edge between v1 & v2
+	# Returns the weight of edge between v1 & v2 - O(1)
 	def weight(v1, v2)
 		if v1 >= @dimension or v2 >= @dimension
 			return 0
@@ -50,8 +50,8 @@ class Graph
 		return @adj_matrix[v1][v2]
 	end
 
-	# Lists all neighbors of vertex v
-	def neighbors(v)
+	# Lists all neighbors of vertex v - O(n)
+	def neighbors(v) 
 		if v >= @dimension
 			return []
 		end
@@ -64,7 +64,7 @@ class Graph
 		return nodes
 	end
 
-	# Removes an edge between v1 & v2
+	# Removes an edge between v1 & v2 - O(1)
 	def remove(v1, v2)
 		if v1 >= @dimension or v2 >= @dimension
 			return false
@@ -74,7 +74,7 @@ class Graph
 		return true
 	end
 
-	# Adds an edge between v1 & v2
+	# Adds an edge between v1 & v2 - O(1)
 	def add(v1, v2, w)
 		if v1 >= @dimension or v2 >= @dimension
 			return false

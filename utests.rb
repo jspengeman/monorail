@@ -1,6 +1,7 @@
-load "graph.rb"
-load "problem.rb"
 require "test/unit"
+require_relative "graph"
+require_relative "problem"
+
 
 
 class GraphTest < Test::Unit::TestCase
@@ -69,24 +70,25 @@ end
 class ProblemTest < Test::Unit::TestCase
 	def test
 		@problem = Problem.new(3, 0, 8, [[0, 1], [1, 2]])
-		check_neighbors()
+		check_stations()
+		check_start()
+		check_goal()
 	end
 
-	def check_neighbors
-		assert_equal([5, 7], @problem.neighbors(2, 2))
-		assert_equal([1, 7, 3, 5], @problem.neighbors(1, 1))
-		assert_equal([3, 1], @problem.neighbors(0, 0))
-		assert_equal([5, 1], @problem.neighbors(2, 0))
-		assert_equal([3, 7], @problem.neighbors(0, 2))
+	def check_stations
+		assert_equal([5, 7], @problem.stations(2, 2))
+		assert_equal([1, 7, 3, 5], @problem.stations(1, 1))
+		assert_equal([3, 1], @problem.stations(0, 0))
+		assert_equal([5, 1], @problem.stations(2, 0))
+		assert_equal([3, 7], @problem.stations(0, 2))
 	end
 
 	def check_start
+		assert_equal(0, @problem.start)
 	end
 
 	def check_goal
-	end
-
-	def check_matrix
+		assert_equal(8, @problem.goal)
 	end
 end
 

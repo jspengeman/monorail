@@ -1,4 +1,4 @@
-load "graph.rb"
+require_relative "graph"
 
 
 class Problem
@@ -11,6 +11,14 @@ class Problem
 		end
 	end
 
+	def start
+		return @start
+	end
+
+	def goal
+		return @goal
+	end
+
 	def display()
 		puts "start state: #{@start}" 
 		puts "goal state: #{@goal}"
@@ -18,8 +26,8 @@ class Problem
 		@graph.display
 	end
 
-	# Checks for neighboring train stations
-	def neighbors(x, y)
+	# Checks for neighboring train stations - O(1) || O(n)?
+	def stations(x, y)
 		delta = 1
 		up = @graph.node_id(x, y - delta)
 		down = @graph.node_id(x, y + delta)
