@@ -92,4 +92,27 @@ class ProblemTest < Test::Unit::TestCase
 	end
 end
 
+class SearchAgentTest < Test::Unit::TestCase
+	def test
+		@problem = Problem.new(3, 0, 8, [[0, 1], [1, 2]])
+		check_solve()
+		check_problem()
+		check_heuristic()
+		check_path_cost()
+	end
+
+	def check_solve
+	end
+
+	def check_problem
+	end
+
+	def check_heuristic
+	end
+
+	def check_path_cost
+	end
+end
+
+
 

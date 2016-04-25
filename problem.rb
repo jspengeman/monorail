@@ -19,7 +19,7 @@ class Problem
 		return @goal
 	end
 
-	def display()
+	def display
 		puts "start state: #{@start}" 
 		puts "goal state: #{@goal}"
 		puts "adjancy matrix: "
@@ -36,17 +36,9 @@ class Problem
 		return [up, down, left, right].reject {|x| x == -1}
 	end
 
-	def add
+	def add(x1, y1, x2, y2, w)
 	end
 
-	def remove
-	end
-
-	def solve(fn)
+	def remove(x1, y1, x2, y2)
 	end
 end
-
-# problem = Problem.new(3, 0, 8, [[0, 1], [1, 2]])
-# problem.display
-
-# puts problem.neighbors(1, 1)

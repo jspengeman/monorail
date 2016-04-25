@@ -1,11 +1,16 @@
 require_relative "problem"
 
 class SearchAgent
-	def initialize(p)
-		@problem = Problem.new(3, 0, 8, [[0, 1], [1, 2]])
-		puts "hello"
+	def initialize(problem)
+		@problem = problem
+	end
+
+	def solve(fn)
+	end
+
+	def h(n)
+	end
+
+	def g(n)
 	end
 end
-
-
-search = SearchAgent.new(1)

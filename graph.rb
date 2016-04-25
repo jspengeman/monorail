@@ -84,3 +84,10 @@ class Graph
 		return true
 	end
 end
+
+class Edge
+	def initialize(c, w)
+		@connected = c
+		@weight = w
+	end	
+end
