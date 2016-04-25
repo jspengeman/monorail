@@ -35,10 +35,4 @@ class Problem
 		left = @graph.node_id(x - delta, y)
 		return [up, down, left, right].reject {|x| x == -1}
 	end
-
-	def add(x1, y1, x2, y2, w)
-	end
-
-	def remove(x1, y1, x2, y2)
-	end
 end

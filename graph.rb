@@ -30,7 +30,11 @@ class Graph
 
 	# Given an x, y cordinate return the node id - O(1)
 	def node_id(x, y)
-		return @nmap["(#{x}, #{y})"]
+		@nmap["(#{x}, #{y})"]
+	end
+
+	def node_cords(v)
+		@nmap.select {|k, value| return k if value == v }
 	end
 
 	# Checks if theres an edge between v1 & v2 - O(1)
@@ -38,9 +42,8 @@ class Graph
 		if v1 >= @dimension or v2 >= @dimension
 			return false
 		end
-		is_adj = @adj_matrix[v1][v2] != 0 \
+		@adj_matrix[v1][v2] != 0 \
 		and @adj_matrix[v2][v1] != 0
-		return is_adj
 	end
 
 	# Returns the weight of edge between v1 & v2 - O(1)
@@ -48,7 +51,7 @@ class Graph
 		if v1 >= @dimension or v2 >= @dimension
 			return 0
 		end
-		return @adj_matrix[v1][v2]
+		@adj_matrix[v1][v2]
 	end
 
 	# Lists all neighbors of vertex v - O(n)
@@ -62,7 +65,6 @@ class Graph
 				nodes.push(i)
 			end
 		end
-		return nodes
 	end
 
 	# Removes an edge between v1 & v2 - O(1)
@@ -84,11 +86,4 @@ class Graph
 		@adj_matrix[v2][v1] = w
 		return true
 	end
-end
-
-class Edge
-	def initialize(c, w)
-		@connected = c
-		@weight = w
-	end	
 end

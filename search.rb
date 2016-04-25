@@ -10,7 +10,4 @@ class SearchAgent
 
 	def h(n)
 	end
-
-	def g(n)
-	end
 end

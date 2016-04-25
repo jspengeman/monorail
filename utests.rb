@@ -55,6 +55,7 @@ class GraphIDTest < Test::Unit::TestCase
 	def test
 		@graph = Graph.new(3)
 		check_nmap()
+		check_cord()
 	end
 
 	def check_nmap
@@ -63,6 +64,12 @@ class GraphIDTest < Test::Unit::TestCase
 		assert_equal(-1, @graph.node_id(4, 4))
 		assert_equal(8, @graph.node_id(2, 2))
 		assert_equal(4, @graph.node_id(1, 1))
+	end
+
+	def check_cord
+		assert_equal("(0, 0)", @graph.node_cords(0))
+		assert_equal("(1, 0)", @graph.node_cords(1))
+		assert_equal({}, @graph.node_cords(10))
 	end
 end
 
