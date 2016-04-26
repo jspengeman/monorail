@@ -90,6 +90,9 @@ class ProblemTest < Test::Unit::TestCase
 		assert_equal([3, 7], @problem.stations(0, 2))
 	end
 
+	def check_stations_n
+	end
+
 	def check_start
 		assert_equal(0, @problem.start)
 	end
@@ -97,7 +100,11 @@ class ProblemTest < Test::Unit::TestCase
 	def check_goal
 		assert_equal(8, @problem.goal)
 	end
+
+	def check_connect
+	end
 end
+
 
 class SearchAgentTest < Test::Unit::TestCase
 	def test
