@@ -77,20 +77,27 @@ end
 class ProblemTest < Test::Unit::TestCase
 	def test
 		@problem = Problem.new(3, 0, 8)
-		check_stations()
+		check_stations_cords()
+		check_stations_id()
 		check_start()
 		check_goal()
 	end
 
-	def check_stations
+	def check_stations_cords
 		assert_equal([5, 7], @problem.stations(2, 2))
 		assert_equal([1, 7, 3, 5], @problem.stations(1, 1))
 		assert_equal([3, 1], @problem.stations(0, 0))
 		assert_equal([5, 1], @problem.stations(2, 0))
-		assert_equal([3, 7], @problem.stations(0, 2))
+		assert_equal([], @problem.stations(3, 3))
+
 	end
 
-	def check_stations_n
+	def check_stations_id
+		assert_equal([5, 7], @problem.stations(8))
+		assert_equal([1, 7, 3, 5], @problem.stations(4))
+		assert_equal([3, 1], @problem.stations(0))
+		assert_equal([5, 1], @problem.stations(2))
+		assert_equal([], @problem.stations(9))
 	end
 
 	def check_start
