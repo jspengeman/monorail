@@ -69,14 +69,14 @@ class GraphIDTest < Test::Unit::TestCase
 	def check_cord
 		assert_equal("(0, 0)", @graph.node_cords(0))
 		assert_equal("(1, 0)", @graph.node_cords(1))
-		assert_equal({}, @graph.node_cords(10))
+		assert_equal(nil, @graph.node_cords(10))
 	end
 end
 
 
 class ProblemTest < Test::Unit::TestCase
 	def test
-		@problem = Problem.new(3, 0, 8, [[0, 1], [1, 2]])
+		@problem = Problem.new(3, 0, 8)
 		check_stations()
 		check_start()
 		check_goal()
@@ -101,7 +101,7 @@ end
 
 class SearchAgentTest < Test::Unit::TestCase
 	def test
-		@problem = Problem.new(3, 0, 8, [[0, 1], [1, 2]])
+		@problem = Problem.new(3, 0, 8)
 		check_solve()
 		check_problem()
 		check_heuristic()

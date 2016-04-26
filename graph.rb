@@ -4,16 +4,22 @@ class Graph
 		@nmap = Hash.new(-1)
 		@dimension = n
 		@adj_matrix = []
-		count = 0
 		for i in 0..n - 1
 			temp = []
 			for j in 0..n - 1
 				temp.push(0)
-				key = "(#{j}, #{i})"
+			end
+			@adj_matrix.push(temp)
+		end
+
+		# TODO: fix this so the right number of nodes are created
+		count = 0
+		for y in 0..n/2 - 1	
+			for x in 0..n/2 - 1 
+				key = "(#{x}, #{y})"
 				@nmap[key] = count
 				count += 1
 			end
-			@adj_matrix.push(temp)
 		end
 	end
 
@@ -34,7 +40,10 @@ class Graph
 	end
 
 	def node_cords(v)
-		@nmap.select {|k, value| return k if value == v }
+		val = @nmap.select {|k, value| return k if value == v }
+		if val == {}
+			return nil
+		end
 	end
 
 	# Checks if theres an edge between v1 & v2 - O(1)
