@@ -1,21 +1,20 @@
 class Graph
 	# Object constructor with hash and matrix - O(n^2)
-	def initialize(n)
+	def initialize(width)
 		@nmap = Hash.new(-1)
-		@dimension = n
+		@dimension = width
 		@adj_matrix = []
-		for i in 0..n - 1
+		for i in 0..@dimension - 1
 			temp = []
-			for j in 0..n - 1
+			for j in 0..@dimension - 1
 				temp.push(0)
 			end
 			@adj_matrix.push(temp)
 		end
 
-		# TODO: fix this so the right number of nodes are created
 		count = 0
-		for y in 0..n/2 - 1	
-			for x in 0..n/2 - 1 
+		for y in 0..width-1	
+			for x in 0..width-1
 				key = "(#{x}, #{y})"
 				@nmap[key] = count
 				count += 1

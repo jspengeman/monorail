@@ -2,11 +2,12 @@ require_relative "graph"
 
 
 class Problem
-	def initialize(dimension, start, goal)
-		@graph = Graph.new(dimension)
+	# Creates a fully connected grid that is width by width
+	def initialize(width, start, goal)
+		@graph = Graph.new(width)
 		@start = start
 		@goal = goal
-		# connect(dimension)
+		connect(width**2)
 	end
 
 	def display
@@ -49,8 +50,6 @@ class Problem
 	def connect(dimension)
 		for v1 in 0..dimension - 1
 			neighbors = stations_n(v1)
-			puts "v1: #{v1}"
-			puts "neighbors: #{neighbors}"
 			neighbors.each do |v2|
 				if v1 != v2
 					@graph.add(v1, v2, 1)
@@ -60,5 +59,5 @@ class Problem
 	end
 end
 
-@problem = Problem.new(9, 0, 3)
-@problem.display
+# @problem = Problem.new(3, 0, 3)
+# @problem.display
