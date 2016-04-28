@@ -9,6 +9,8 @@ class SearchAgent
 		# @problem.start is the start station
 		# @problem.goal is the goal station
 		# @problem.stations(v) is neighbor stations
+
+		
 	end
 
 	def h(n)

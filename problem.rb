@@ -55,6 +55,12 @@ class Problem
 		return [up, down, left, right].reject {|x| x == -1}
 	end
 
+	# Returns connection stations to station s - O(n)
+	def succesors(s)
+		neighbors = stations(s)
+		neighbors.reject {|u| adjacent(s, u) != true}
+	end
+
 	def adjacent(s1, s2)
 		@grid.adjacent(s1, s2)
 	end
@@ -71,5 +77,3 @@ class Problem
 		end
 	end
 end
-
-
