@@ -53,7 +53,7 @@ end
 
 class GraphIDTest < Test::Unit::TestCase
 	def test
-		@graph = Graph.new(3)
+		@graph = Graph.new(9)
 		check_nmap()
 		check_cord()
 	end
@@ -77,10 +77,16 @@ end
 class ProblemTest < Test::Unit::TestCase
 	def test
 		@problem = Problem.new(3, 0, 8)
+		check_adjacent()
+		check_connect()
 		check_stations_cords()
 		check_stations_id()
 		check_start()
 		check_goal()
+	end
+
+	def check_adjacent
+		assert_equal(true, @problem.adjacent(0, 3))
 	end
 
 	def check_stations_cords
@@ -109,6 +115,14 @@ class ProblemTest < Test::Unit::TestCase
 	end
 
 	def check_connect
+		for v1 in 0..8
+			neighbors = @problem.stations(v1)
+			neighbors.each do |v2|
+				if v1 != v2
+					assert_equal(true, @problem.adjacent(v1, v2))
+				end
+			end
+		end
 	end
 end
 

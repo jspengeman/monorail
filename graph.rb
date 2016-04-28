@@ -1,18 +1,19 @@
 class Graph
 	# Object constructor with hash and matrix - O(n^2)
-	def initialize(width)
-		@nmap = Hash.new(-1)
-		@dimension = width
+	def initialize(node_count)
 		@adj_matrix = []
-		for i in 0..@dimension - 1
+		@nmap = Hash.new(-1)
+		@node_count = node_count
+		for i in 0..@node_count - 1
 			temp = []
-			for j in 0..@dimension - 1
+			for j in 0..@node_count - 1
 				temp.push(0)
 			end
 			@adj_matrix.push(temp)
 		end
 
 		count = 0
+		width = Math.sqrt(node_count).floor
 		for y in 0..width-1	
 			for x in 0..width-1
 				key = "(#{x}, #{y})"
@@ -47,7 +48,7 @@ class Graph
 
 	# Checks if theres an edge between v1 & v2 - O(1)
 	def adjacent(v1, v2)
-		if v1 >= @dimension or v2 >= @dimension
+		if v1 >= @node_count or v2 >= @node_count
 			return false
 		end
 		@adj_matrix[v1][v2] != 0 \
@@ -56,7 +57,7 @@ class Graph
 
 	# Returns the weight of edge between v1 & v2 - O(1)
 	def weight(v1, v2)
-		if v1 >= @dimension or v2 >= @dimension
+		if v1 >= @node_count or v2 >= @node_count
 			return 0
 		end
 		@adj_matrix[v1][v2]
@@ -64,7 +65,7 @@ class Graph
 
 	# Lists all neighbors of vertex v - O(n)
 	def neighbors(v) 
-		if v >= @dimension
+		if v >= @node_count
 			return []
 		end
 		nodes = []
@@ -77,7 +78,7 @@ class Graph
 
 	# Removes an edge between v1 & v2 - O(1)
 	def remove(v1, v2)
-		if v1 >= @dimension or v2 >= @dimension
+		if v1 >= @node_count or v2 >= @node_count
 			return false
 		end
 		@adj_matrix[v1][v2] = 0
@@ -87,7 +88,7 @@ class Graph
 
 	# Adds an edge between v1 & v2 - O(1)
 	def add(v1, v2, w)
-		if v1 >= @dimension or v2 >= @dimension
+		if v1 >= @node_count or v2 >= @node_count
 			return false
 		end
 		@adj_matrix[v1][v2] = w 
