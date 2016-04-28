@@ -28,6 +28,10 @@ class Problem
 		return @goal
 	end
 
+	def is_goal(s)
+		s == @goal
+	end
+
 	# Checks for neighboring train stations - O(n)
 	def stations(*args)
 		# If two args then x, y cords
@@ -71,7 +75,7 @@ class Problem
 			neighbors = stations(v1)
 			neighbors.each do |v2|
 				if v1 != v2
-					print @grid.add(v1, v2, 1)
+					@grid.add(v1, v2, 1)
 				end
 			end
 		end
