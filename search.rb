@@ -1,3 +1,5 @@
+require 'algorithms'
+include Containers
 require_relative "problem"
 
 class SearchAgent
@@ -8,6 +10,8 @@ class SearchAgent
 	def solve(fn)
 		if fn == "bfs"
 			bfs()
+		elsif fn == "djk"
+			dijkstra()
 		end
 	end
 
@@ -36,8 +40,14 @@ class SearchAgent
 			end
 		end
 	end
+
+	def dijkstra()
+		explored = []
+		frontier = PriorityQueue.new
+	end
 end
 
 problem = Problem.new(3, 0, 8)
 agent = SearchAgent.new(problem)
 print agent.solve("bfs")
+print agent.solve("djk")
