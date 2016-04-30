@@ -71,8 +71,6 @@ class SearchAgent
 			chd[i] = @problem.succesors(i)
 		end
 
-		print chd
-
 		vertices = [*1..@problem.size]
 		output = [0]
 		while vertices.any?
@@ -81,13 +79,22 @@ class SearchAgent
 
 			u = output.last
 
-			children = @problem.succesors(u)
+			children = chd[u]
 			
 			v = children.first
 
 			if not vertices.include? v
 				v = children[1]
 			end
+
+			chd.each do |key, value|
+				chd[key].delete(v)	
+			end
+
+			if v == nil
+				return output
+			end
+
 			vertices.delete(v)
 
 			output.push(v)
