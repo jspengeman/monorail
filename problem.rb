@@ -62,7 +62,7 @@ class Problem
 		down = @grid.node_id(x, y + delta)
 		right = @grid.node_id(x + delta, y) 
 		left = @grid.node_id(x - delta, y)
-		return [up, down, left, right].reject {|x| x == -1}
+		return [up, down, left, right].reject {|j| j == -1}
 	end
 
 	# Returns connection stations to station s - O(n)

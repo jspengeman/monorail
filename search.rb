@@ -18,7 +18,6 @@ class SearchAgent
 	end
 
 	def bfs()
-		path = []
 		explored = []
 		frontier = Queue.new
 
@@ -27,7 +26,7 @@ class SearchAgent
 			current = frontier.pop
 
 			if @problem.is_goal(current)
-				return path
+				return explored
 			end
 
 			if not explored.include? current
@@ -36,7 +35,6 @@ class SearchAgent
 				@problem.succesors(current).each do |child|
 					if not explored.include? child
 						frontier.push(child)
-						path.push(child)
 					end
 				end
 			end
@@ -68,22 +66,33 @@ class SearchAgent
 	end
 
 	def manual()
-		parentMap = Hash.new(-1)
-		for curr in 0..@problem.size - 1
-			@problem.succesors(curr).each do |child|
-				parentMap[child] = curr
-			end 
+		chd = Hash.new(-1)
+		for i in 0..@problem.size - 1
+			chd[i] = @problem.succesors(i)
 		end
 
-		path = [@problem.start]
-		node = @problem.start
-		while node != -1
-			node = parentMap[node]
-			path.push(node)
-			if node == @problem.goal
-				return path
+		print chd
+
+		vertices = [*1..@problem.size]
+		output = [0]
+		while vertices.any?
+			# print vertices
+			# print output
+
+			u = output.last
+
+			children = @problem.succesors(u)
+			
+			v = children.first
+
+			if not vertices.include? v
+				v = children[1]
 			end
-		end
+			vertices.delete(v)
+
+			output.push(v)
+		end	
+		return output
 	end
 end
 
