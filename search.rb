@@ -14,7 +14,7 @@ class SearchAgent
 			dijkstra()
 		elsif fn == "tour"
 			create_tour()
-		elsif fun == "cust"
+		elsif fn == "cust"
 			custom_tour()
 		end
 	end
