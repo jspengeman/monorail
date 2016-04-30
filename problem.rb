@@ -5,6 +5,7 @@ class Problem
 	# Creates a fully connected grid that is width by width
 	def initialize(width, start, goal)
 		@grid = Graph.new(width**2)
+		@size = width**2
 		@start = start
 		@goal = goal
 		connect(width**2)
@@ -16,6 +17,11 @@ class Problem
 		puts "goal state: #{@goal}"
 		puts "adjancy matrix: "
 		@grid.display
+	end
+
+	# Simple getter for the size
+	def size
+		return @size
 	end
 
 	# Simple getter for start state
