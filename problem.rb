@@ -38,6 +38,10 @@ class Problem
 		s == @goal
 	end
 
+	def node_cords(n)
+		@grid.node_cords(n)
+	end
+
 	# Checks for neighboring train stations - O(n)
 	def stations(*args)
 		# If two args then x, y cords

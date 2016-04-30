@@ -12,8 +12,10 @@ class SearchAgent
 			bfs()
 		elsif fn == "djk"
 			dijkstra()
-		elsif fn == "man"
-			manual()
+		elsif fn == "tour"
+			create_tour()
+		elsif fun == "cust"
+			custom_tour()
 		end
 	end
 
@@ -65,28 +67,24 @@ class SearchAgent
 		end
 	end
 
-	def manual()
+	# Grabs the first neighbors 
+	def create_tour()
 		chd = Hash.new(-1)
 		for i in 0..@problem.size - 1
 			chd[i] = @problem.succesors(i)
 		end
 
 		vertices = [*1..@problem.size]
-		output = [0]
+		vertices.delete(@problem.start)
+		output = [@problem.start]
 		while vertices.any?
-			# print vertices
-			# print output
-
 			u = output.last
-
 			children = chd[u]
-			
 			v = children.first
 
 			if not vertices.include? v
 				v = children[1]
 			end
-
 			chd.each do |key, value|
 				chd[key].delete(v)	
 			end
@@ -94,17 +92,75 @@ class SearchAgent
 			if v == nil
 				return output
 			end
-
 			vertices.delete(v)
-
 			output.push(v)
 		end	
 		return output
 	end
+
+	# Grabs the neighbors that is closet to goal
+	def custom_tour()
+		children = Hash.new(-1)
+		for i in 0..@problem.size - 1
+			children[i] = PriorityQueue.new()
+
+			@problem.succesors(i).each do |node|
+				children[i].push(node, h(node))
+			end
+		end
+		
+		vertices = [*1..@problem.size]
+		vertices.delete(@problem.start)
+		output = [@problem.start]
+		while vertices.any?
+			u = output.last
+			chd = children[u]
+			v = chd.pop()
+
+			if not vertices.include? v
+				v = chd.pop()
+			end
+
+			h_val = 0
+			if v != nil
+				h_val = h(v)
+			end
+
+			children.each do |key, value|
+				children[key].delete(h_val)	
+			end
+
+			if v == nil
+				return output
+			end
+			vertices.delete(v)
+			output.push(v)
+		end	
+		return output		
+	end
+
+	def h(n)
+		goal = @problem.goal
+		n_str = @problem.node_cords(n)
+		goal_str = @problem.node_cords(goal)
+
+		paren1 = n_str.index('(')
+		paren2 = n_str.index(')')
+		nx = n_str[paren1 + 1].to_i
+		ny = n_str[paren2 - 1].to_i
+
+		paren1 = goal_str.index('(')
+		paren2 = goal_str.index(')')
+		gx = goal_str[paren1 + 1].to_i
+		gy = goal_str[paren2 - 1].to_i
+
+		return (nx - gx).abs + (ny - gy).abs
+	end
 end
 
-problem = Problem.new(3, 0, 8)
+problem = Problem.new(3, 0, 8) 
 agent = SearchAgent.new(problem)
 # print agent.solve("bfs")
 # print agent.solve("djk")
-print agent.solve("man")
+print agent.solve("tour")
+print agent.solve("cust")
