@@ -2,6 +2,8 @@ require_relative "graph"
 
 
 class Problem
+	attr_reader :size, :start, :goal
+
 	# Creates a fully connected grid that is width by width
 	def initialize(width, start, goal)
 		@grid = Graph.new(width**2)
@@ -17,25 +19,6 @@ class Problem
 		puts "goal state: #{@goal}"
 		puts "adjancy matrix: "
 		@grid.display
-	end
-
-	def grid
-		return @grid
-	end
-
-	# Simple getter for the size
-	def size
-		return @size
-	end
-
-	# Simple getter for start state
-	def start
-		return @start
-	end
-
-	# Simple getter for goal state
-	def goal
-		return @goal
 	end
 
 	def is_goal(s)
