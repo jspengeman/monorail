@@ -139,6 +139,9 @@ class SearchAgent
 		return output		
 	end
 
+	def a_star()
+	end
+
 	def h(n)
 		goal = @problem.goal
 		n_str = @problem.node_cords(n)
@@ -154,7 +157,7 @@ class SearchAgent
 		gx = goal_str[paren1 + 1].to_i
 		gy = goal_str[paren2 - 1].to_i
 
-		return (nx - gx).abs + (ny - gy).abs
+		return ((nx - gx)**2 + (ny - gy)**2)
 	end
 end
 
