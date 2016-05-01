@@ -19,6 +19,10 @@ class Problem
 		@grid.display
 	end
 
+	def grid
+		return @grid
+	end
+
 	# Simple getter for the size
 	def size
 		return @size
@@ -84,10 +88,15 @@ class Problem
 		for v1 in 0..node_count - 1
 			neighbors = stations(v1)
 			neighbors.each do |v2|
+				neighbors1 = stations(v1)
+				neighbors2 = stations(v2)
 				if v1 != v2
 					@grid.add(v1, v2, 1)
 				end
 			end
 		end
+		
+		# Add this to run TSP style algorithms
+		@grid.add(@start, @goal, 1)
 	end
 end

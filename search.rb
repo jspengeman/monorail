@@ -1,6 +1,7 @@
 require 'algorithms'
 include Containers
 require_relative "problem"
+require_relative "union"
 
 class SearchAgent
 	def initialize(problem)
@@ -67,6 +68,24 @@ class SearchAgent
 		end
 	end
 
+	def kruskal()
+		graph = @problem.grid
+
+		mst = []
+		edges = graph.edges.sort_by { |h| h.weight }.reverse!
+
+		union_find = UnionFind.new([*0..@problem.size])
+		while edges.any? && mst.size <= graph.node_count
+			edge = edges.shift
+			if !union_find.connected?(edge.node1, edge.node2)
+				union_find.union(edge.node1, edge.node2)
+				mst << edge
+			end
+		end
+		
+		mst
+	end
+
 	# Grabs the first neighbors 
 	def create_tour()
 		chd = Hash.new(-1)
@@ -75,8 +94,8 @@ class SearchAgent
 		end
 
 		vertices = [*1..@problem.size]
-		vertices.delete(@problem.start)
-		output = [@problem.start]
+		vertices.delete(@problem.goal)
+		output = [@problem.goal]
 		while vertices.any?
 			u = output.last
 			children = chd[u]
@@ -139,9 +158,6 @@ class SearchAgent
 		return output		
 	end
 
-	def a_star()
-	end
-
 	def h(n)
 		goal = @problem.goal
 		n_str = @problem.node_cords(n)
@@ -157,13 +173,14 @@ class SearchAgent
 		gx = goal_str[paren1 + 1].to_i
 		gy = goal_str[paren2 - 1].to_i
 
-		return ((nx - gx)**2 + (ny - gy)**2)
+		return ((nx - gx) + (ny - gy))
 	end
 end
 
-problem = Problem.new(3, 0, 8) 
+problem = Problem.new(3, 2, 6) 
 agent = SearchAgent.new(problem)
 # print agent.solve("bfs")
 # print agent.solve("djk")
-print agent.solve("tour")
+# print agent.solve("tour")
 print agent.solve("cust")
+# print agent.kruskal()

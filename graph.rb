@@ -4,6 +4,7 @@ class Graph
 		@adj_matrix = []
 		@nmap = Hash.new(-1)
 		@node_count = node_count
+		@edges = []
 		for i in 0..@node_count - 1
 			temp = []
 			for j in 0..@node_count - 1
@@ -21,6 +22,14 @@ class Graph
 				count += 1
 			end
 		end
+	end
+
+	def edges
+		return @edges
+	end
+
+	def node_count
+		return @node_count
 	end
 
 	# Display the adj matrix rows and cols - O(n^2)
@@ -91,8 +100,26 @@ class Graph
 		if v1 >= @node_count or v2 >= @node_count
 			return false
 		end
+
+		# Edge list
+		@edges.push(Edge.new(v1, v2, w))
+
 		@adj_matrix[v1][v2] = w 
 		@adj_matrix[v2][v1] = w
 		return true
 	end
+end
+
+class Edge 
+	attr_accessor :node1, :node2, :weight
+
+	def initialize(from, to, weight)
+		@node1 = from
+		@node2 = to
+		@weight = weight
+	end	
+
+	def <=>(other)
+    	self.weight <=> other.weight
+  	end
 end
