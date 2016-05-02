@@ -1,4 +1,5 @@
 class UnionFind
+  # Create our sets
   def initialize(nodes)
     @unions = {}
     nodes.each_with_index do |node, index|
@@ -6,10 +7,15 @@ class UnionFind
     end
   end
 
+  # Check if two nodes are in 
+  # the same set or not
   def connected?(node1, node2)
     @unions[node1] == @unions[node2]
   end
 
+  # Check if the nodes are already
+  # in the same set or not otherwise
+  # union the pseudo-sets
   def union(node1, node2)
     return if connected?(node1, node2)
     node1_id = @unions[node1]

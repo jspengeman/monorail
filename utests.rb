@@ -3,7 +3,6 @@ require_relative "graph"
 require_relative "problem"
 
 
-
 class GraphTest < Test::Unit::TestCase
 	def test
 		@graph = Graph.new(5)
