@@ -1,4 +1,6 @@
 class Graph
+	attr_accessor :edges, :node_count
+
 	# Object constructor with hash and matrix - O(n^2)
 	def initialize(node_count)
 		@adj_matrix = []
@@ -22,14 +24,6 @@ class Graph
 				count += 1
 			end
 		end
-	end
-
-	def edges
-		return @edges
-	end
-
-	def node_count
-		return @node_count
 	end
 
 	# Display the adj matrix rows and cols - O(n^2)

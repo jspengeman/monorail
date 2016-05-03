@@ -78,8 +78,7 @@ class Problem
 				end
 			end
 		end
-		
 		# Add this to run TSP style algorithms
-		@grid.add(@start, @goal, 1)
+		# @grid.add(@start, @goal, 1)
 	end
 end

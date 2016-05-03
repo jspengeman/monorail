@@ -96,8 +96,8 @@ class SearchAgent
 		end
 
 		vertices = [*1..@problem.size]
-		vertices.delete(@problem.goal)
-		output = [@problem.goal]
+		vertices.delete(@problem.start)
+		output = [@problem.start]
 		while vertices.any?
 			u = output.last
 			children = chd[u]
@@ -178,15 +178,3 @@ class SearchAgent
 		return ((nx - gx) + (ny - gy))
 	end
 end
-
-problem = Problem.new(3, 2, 6) 
-agent = SearchAgent.new(problem)
-print agent.solve("bfs") 
-print "\n"
-print agent.solve("djk")
-print "\n"
-print agent.solve("tour")
-print "\n"
-print agent.solve("cust")
-print "\n"
-print agent.solve("krus")

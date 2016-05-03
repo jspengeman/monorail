@@ -10,7 +10,7 @@ The project is acrhitectured similarly to the Pacman problems we worked on earli
 
 #### Local Set Up
 
-First you will need to make sure to have a ruby distribution on your computer. Next install the single gem that was needed for priority queues. This can be done using "gem install" while in the monorail (root of the project) directory. Since `search.rb` is the root of the project running that file is a good entry point. You can define your own problem at the bottom of the file.
+First you will need to make sure to have a ruby distribution on your computer. Next install the single gem that was needed for priority queues. This can be done using "gem install" while in the monorail (root of the project) directory. The main file is `search.rb` so that is a good place to add problems and test out the different algorithms but in `init.rb` you can find a script that runs a few simple problems. You can define your own problem at the bottom of the file.
 
 #### Problem Retrospective
 
