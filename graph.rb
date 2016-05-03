@@ -110,6 +110,7 @@ class Graph
 	end
 end
 
+# Simple util class needed for Kruskals algorithm
 class Edge 
 	attr_accessor :node1, :node2, :weight
 

@@ -2,7 +2,7 @@ require_relative "graph"
 
 
 class Problem
-	attr_reader :size, :start, :goal
+	attr_reader :size, :start, :goal, :grid
 
 	# Creates a fully connected grid that is width by width
 	def initialize(width, start, goal)

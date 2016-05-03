@@ -17,6 +17,8 @@ class SearchAgent
 			create_tour()
 		elsif fn == "cust"
 			custom_tour()
+		elsif fn == "krus"
+			kruskal()
 		end
 	end
 
@@ -179,8 +181,12 @@ end
 
 problem = Problem.new(3, 2, 6) 
 agent = SearchAgent.new(problem)
-# print agent.solve("bfs")
-# print agent.solve("djk")
-# print agent.solve("tour")
+print agent.solve("bfs") 
+print "\n"
+print agent.solve("djk")
+print "\n"
+print agent.solve("tour")
+print "\n"
 print agent.solve("cust")
-# print agent.kruskal()
+print "\n"
+print agent.solve("krus")
